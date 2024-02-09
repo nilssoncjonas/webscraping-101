@@ -1,5 +1,5 @@
 import { Browser } from "puppeteer"
-
+const fs = require('fs')
 const puppeteer = require('puppeteer')
 
 const url = 'https://books.toscrape.com/'
@@ -39,5 +39,9 @@ const main = async () => {
 
 	await browser.close()
 	console.log('done!')
+	fs.writeFile('books.json', JSON.stringify(bookData), (err: any) => {
+		if (err) throw err
+		console.log('The file has been saved!')
+	})
 }
 main()
