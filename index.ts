@@ -6,7 +6,7 @@ const url = 'https://books.toscrape.com/'
 
 const main = async () => {
 
-	const browser: Browser = await puppeteer.launch()
+	const browser: Browser = await puppeteer.launch({ headless: false })
 	console.log('browser open')
 
 	const page = await browser.newPage()
