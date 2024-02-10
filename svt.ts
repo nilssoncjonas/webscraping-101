@@ -1,4 +1,6 @@
 import { Browser } from "puppeteer"
+import { readJSONFromFile, writeJSONToFile } from "./utils/json"
+import { timeStamp } from "console"
 const fs = require('fs')
 const puppeteer = require('puppeteer')
 
@@ -26,14 +28,20 @@ const main = async () => {
 		}))
 		return data
 	}, url)
-	console.log(data)
-
 
 	await browser.close()
-	console.log('done!')
-	fs.writeFile('svt-latest.json', JSON.stringify(data), (err: any) => {
-		if (err) throw err
-		console.log('The file has been saved!')
-	})
+
+	console.log('browser close')
+
+	console.log('saving...')
+	// Read existing data from file
+	let existingData = readJSONFromFile('data/svt-latest.json')
+	// Remove duplicates from new data
+	const uniqueNewData = data.filter(newItem => !existingData.some((existingItem: any) => existingItem.title === newItem.title));
+	// Append only unique data to existing data
+	const updatedData = [...uniqueNewData, ...existingData];
+	// Write the sorted data to file
+	writeJSONToFile('data/svt-latest.json', updatedData)
+	console.log('saved!')
 }
 main()
