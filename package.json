@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node index.ts",
     "stealth": "ts-node index-stealth.ts",
-    "login": "ts-node index-login.ts"
+    "login": "ts-node index-login.ts",
+    "svt": "ts-node svt.ts"
   },
   "keywords": [],
   "author": "",
