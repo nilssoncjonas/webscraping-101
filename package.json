@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node index.ts",
-    "stealth": "ts-node index-stealth.ts"
+    "stealth": "ts-node index-stealth.ts",
+    "login": "ts-node index-login.ts"
   },
   "keywords": [],
   "author": "",
