@@ -12,6 +12,6 @@ export const readJSONFromFile = (filePath: string) => {
 };
 
 // Function to write JSON data to file
-export const writeJSONToFile = (filePath: string, data: any) => {
+export const writeJSONToFile = (filePath: string, data: any[]) => {
 	fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };

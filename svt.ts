@@ -6,10 +6,10 @@ const puppeteer = require('puppeteer')
 
 const url = 'https://www.svt.se/'
 
-const main = async () => {
+export const svtLatestNews = async () => {
 
 	const browser: Browser = await puppeteer.launch({ headless: true })
-	console.log('browser open')
+	console.log('start')
 
 	const page = await browser.newPage()
 
@@ -31,9 +31,7 @@ const main = async () => {
 
 	await browser.close()
 
-	console.log('browser close')
-
-	console.log('saving...')
+	console.log('saving')
 	// Read existing data from file
 	let existingData = readJSONFromFile('data/svt-latest.json')
 	// Remove duplicates from new data
@@ -42,6 +40,5 @@ const main = async () => {
 	const updatedData = [...uniqueNewData, ...existingData];
 	// Write the sorted data to file
 	writeJSONToFile('data/svt-latest.json', updatedData)
-	console.log('saved!')
+	console.log('finished, New items:', uniqueNewData.length)
 }
-main()
